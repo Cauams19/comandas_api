@@ -99,7 +99,7 @@ async def delete_cliente(id: int):
 
 # Checks if the entered CPF is already registered, returning the current data if already is
 @router.get("/cliente/cpf/{cpf}", tags=["Cliente - Valida CPF"])
-async def cpf_funcionario(cpf: str):
+async def cpf_cliente(cpf: str):
     try:
         session = db.Session()
 
