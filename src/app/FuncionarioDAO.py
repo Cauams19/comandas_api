@@ -55,7 +55,7 @@ async def post_funcionario(corpo: Funcionario):
         session.rollback()
         return {"erro": str(e)}, 400
     finally:
-        session.close
+        session.close()
 
 @router.put("/funcionario/{id}", tags=["Funcionário"])  # Edits one
 async def put_funcionario(id: int, corpo: Funcionario):
