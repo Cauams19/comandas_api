@@ -7,4 +7,3 @@ share/
 pyvenv.cfg
 .idea
 .vscode
-app/__pycache__/
