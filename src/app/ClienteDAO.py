@@ -81,7 +81,7 @@ async def put_cliente(id: int, corpo: Cliente):
         session.close()
 
 @router.delete("/cliente/{id}", tags=["Cliente"])   # Deletes one
-async def delete_cliente():
+async def delete_cliente(id: int):
     try:
         session = db.Session()
         # Search the current data by id
