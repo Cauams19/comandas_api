@@ -7,12 +7,27 @@ from app import FuncionarioDAO
 from app import ClienteDAO
 from app import ProdutoDAO
 
-app = FastAPI()
+from contextlib import asynccontextmanager
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Executes at startup
+    print("API has started")
+
+    # Creates, in case they don't exist, the tables of all models found in the application (imported)
+    import db
+    await db.criaTabelas()
+
+    yield
+
+    # Executes at shutdown
+    print("API is shutting down")
+
+app = FastAPI(lifespan=lifespan)
 
 # Default route
 @app.get("/")
-def root():
-    return {"detail":"API Pastelaria", "Swagger UI": "http://127.0.0.1:8000/docs", "ReDoc": "http://127.0.0.1:8000/redoc"}
+async def root():
+    return {"detail":"API Comandas", "Swagger UI": "http://127.0.0.1:8000/docs", "ReDoc": "http://127.0.0.1:8000/redoc"}
 
 # Mapping the routes/endpoints
 app.include_router(FuncionarioDAO.router)
