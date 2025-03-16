@@ -32,3 +32,8 @@ elif DB_SGDB == 'mssql':    # SQL Server
     STR_DATABASE = f"mssql+pymssql://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}?charset=utf8"
 else:   # SQLite
     STR_DATABASE = f"sqlite:///comandas.db"
+
+# API's Security Settings
+SECRET_KEY = os.getenv("SECRET_KEY")
+ALGORITHM = os.getenv("ALGORITHM")
+ACCESS_TOKEN_EXPIRE_MINUTES = os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES")
