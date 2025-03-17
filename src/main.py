@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI                     # Cauã Moreira Schmidt
 from settings import HOST, PORT, RELOAD
 import uvicorn
 
