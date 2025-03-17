@@ -1,11 +1,16 @@
 from fastapi import APIRouter
 from domain.entities.Produto import Produto
 
+# Security import
+from typing import Annotated
+from fastapi import Depends
+from security import get_current_active_user, User
+
 # Data persistence import
 import db
 from infra.orm.ProdutoModel import ProdutoDB
 
-router = APIRouter()
+router = APIRouter(dependencies= [Depends(get_current_active_user)])
 
 # Creating the routes/endpoints: GET, POST, PUT, DELETE
 
