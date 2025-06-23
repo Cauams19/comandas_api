@@ -22,7 +22,7 @@ services:
       "
 
   comandas_api:
-    image: cauams123/comanda-api:latest
+    image: cauams123/comanda-api:test
     container_name: comandas_api
     depends_on:
       - db

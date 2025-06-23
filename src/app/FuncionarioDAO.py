@@ -113,7 +113,13 @@ async def login_funcionario(corpo: Funcionario):
 
         # one(), requires that there's only one result in the result set
         # it's an error if the database returns 0, 2 or more results and an exception will be generated
-        dados = session.query(FuncionarioDB).filter(FuncionarioDB.cpf == corpo.cpf).filter(FuncionarioDB.senha == corpo.senha).one()
+        from passlib.context import CryptContext
+        pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+        dados = session.query(FuncionarioDB).filter(FuncionarioDB.cpf == corpo.cpf).one()
+
+        if not pwd_context.verify(corpo.senha, dados.senha):
+            raise Exception("Senha incorreta")
 
         return dados, 200
     
